@@ -1,6 +1,8 @@
 import { Header } from "./components/Header"
 import FeatureMovies from "./components/FeatureMovies"
 import MediaList from "./components/MediaList/MediaList"
+import { TRENDING_TABS } from "./libs/constant"
+
 
 
 
@@ -9,7 +11,7 @@ function App() {
     <div>
       <Header />
       <FeatureMovies/>
-      <MediaList/>
+      <MediaList TABS={TRENDING_TABS} Title="TOP Trending"/>
     </div>
   )
 }

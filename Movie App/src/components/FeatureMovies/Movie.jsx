@@ -12,7 +12,7 @@ const Movie = (props) => {
 
     return (
         <div>
-            <img src={`https://image.tmdb.org/t/p/original${backdrop_path}`} className="aspect-video brightness-50" />
+            <img src={`https://image.tmdb.org/t/p/original${backdrop_path}`} className="aspect-video brightness-50 w-full" />
             <div className="absolute bottom-[20%] left-8 w-1/2 text-white sm:w-1/3">
                 <p className="font-extrabold sm:text-[3vw] mb-2">{title}</p>
                 <div>

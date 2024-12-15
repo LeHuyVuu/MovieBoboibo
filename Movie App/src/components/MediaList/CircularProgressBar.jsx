@@ -1,4 +1,4 @@
-import React from 'react';
+
 
 export const CircularProgressBar = ({ percent = 69, size = 100, strokeWidth = 8, strokeColor = "#FFD700", textColor = "white" }) => {
   const radius = size / 2 - strokeWidth; // Bán kính của vòng tròn

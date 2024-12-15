@@ -40,8 +40,8 @@ const MediaList = ({ TABS, Title }) => {
                                 }}
                                 key={tabItem.id}
                                 className={`px-4 py-2 rounded-full cursor-pointer ${tabItem.id === 'all'
-                                        ? 'bg-white text-black hover:bg-gray-300'
-                                        : 'bg-black text-white hover:bg-gray-700'
+                                    ? 'bg-white text-black hover:bg-gray-300'
+                                    : 'bg-black text-white hover:bg-gray-700'
                                     }`}
                             >
                                 {tabItem.name}

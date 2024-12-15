@@ -1,0 +1,61 @@
+<div className="relative bg-black text-white">
+            {/* Background Image */}
+            <div
+                className="absolute inset-0 bg-cover bg-center opacity-40"
+                style={{
+                    backgroundImage: `url('https://image.tmdb.org/t/p/original/${movieInfo.backdrop_path}')`,
+                }}
+            ></div>
+
+            {/* Content Section */}
+            <div className="relative flex flex-col lg:flex-row p-4 lg:p-10">
+                {/* Movie Poster */}
+                <div className="lg:w-1/3 flex justify-center">
+                    <img
+                        src={`https://image.tmdb.org/t/p/original/${movieInfo.poster_path}`}
+                        alt="Movie Poster"
+                        className="w-72 rounded-lg shadow-lg"
+                    />
+                </div>
+
+                {/* Movie Details */}
+                <div className="lg:w-2/3 flex flex-col justify-center p-4">
+                    {/* Title */}
+                    <h1 className="text-3xl lg:text-5xl font-bold mb-4">
+                        {movieInfo.title}
+                    </h1>
+
+                    {/* Date & Genres */}
+                    <div className="text-gray-400 text-sm lg:text-base mb-4">
+                        {/* <span>{movieInfo.release_date}</span> |{" "}
+                        {movieInfo.genres.map((item) =>{
+                            <span>{item}</span>
+                        })} */}
+                    </div>
+
+                    {/* Rating */}
+                    <CircularProgressBar percent="100" />
+
+                    {/* Overview */}
+                    <h2 className="text-xl font-semibold mb-2">Overview</h2>
+                    <p className="text-gray-300 mb-4 leading-relaxed">
+                        After the Queen of Hearts incites a coup on Auradon, her rebellious
+                        daughter Red and  perfectionist daughter Chloe join
+                        forces and travel back in time to try to undo the traumatic event
+                        that set  mother down her villainous path.
+                    </p>
+
+                    {/* Director & Writer */}
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
+                        <div>
+                            <span className="font-semibold">Director:</span>
+                            <span className="text-gray-300"> Jennifer Phang</span>
+                        </div>
+                        <div>
+                            <span className="font-semibold">Writer:</span>
+                            <span className="text-gray-300"> Dan Frey, Russell Sommer</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>

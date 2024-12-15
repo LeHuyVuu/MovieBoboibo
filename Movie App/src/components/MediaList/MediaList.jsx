@@ -24,6 +24,9 @@ const MediaList = ({ TABS, Title }) => {
                 });
         }
     }, [activeTabId]);
+
+    
+
     return (
         <div className="px-8 py-10 bg-black text-white">
             <div className="flex flex-col items-start gap-4">
@@ -48,13 +51,12 @@ const MediaList = ({ TABS, Title }) => {
                             </li>
                         ))
                     }
-
-
                 </ul>
             </div>
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr p-4">
                 {mediaList.map((media) => (
                     <MovieCard
+                        id={media.id}
                         key={media.id}
                         title={media.title}
                         releaseDate={media.release_date}

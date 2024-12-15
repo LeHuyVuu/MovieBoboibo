@@ -39,6 +39,9 @@ const FeatureMovies = () => {
             });
     }, []);
     // console.log("Movie after handling:", JSON.stringify(movies, 0, 3));
+
+    
+
     return (
         <div className="relative">
             {

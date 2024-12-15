@@ -28,8 +28,22 @@ export const MovieDetail = () => {
 
     }, [id]);
     if (!movieInfo) {
-        return <div className="text-center text-white p-10">Loading...</div>;
+        return (
+            <div className="flex items-center justify-center min-h-screen bg-black">
+                <div className="relative flex flex-col items-center justify-center">
+                    {/* Vòng tròn xoay */}
+                    <div className="h-16 w-16 border-4 border-red-600 border-t-transparent rounded-full animate-spin"></div>
+        
+                    {/* Chữ Loading */}
+                    <p className="text-white mt-4 text-lg font-semibold animate-pulse">
+                        Loading...
+                    </p>
+                </div>
+            </div>
+        );
     }
+
+    
     const crews = (movieInfo.credits?.crew || [])
     .filter((crew) => ["Director", "Screenplay", "Writer"].includes(crew.job))
     .map((crew) => ({
@@ -43,7 +57,7 @@ export const MovieDetail = () => {
     console.log({crews, groupedCrews});
 
     return (
-
+        
         <div className="relative bg-black text-white">
             {/* Background Image */}
             <div

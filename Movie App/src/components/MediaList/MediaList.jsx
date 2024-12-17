@@ -23,7 +23,7 @@ const MediaList = ({ TABS, Title }) => {
                     setMediaList(trendingMediaList);
                 });
         }
-    }, [activeTabId]);
+    }, [activeTabId, TABS]);
 
     
 

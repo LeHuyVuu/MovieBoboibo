@@ -6,6 +6,9 @@ import ActorList from "../components/MediaDetail/ActorList";
 
 
 export const MovieDetail = () => {
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
     const { id } = useParams();
     const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDk3NDIwMDlmZTM4ZTUxYWE5Zjc4YjkxNDdjMzZjMyIsIm5iZiI6MTczNDEwMjY5OS40MjksInN1YiI6IjY3NWM0ZWFiMzhlOWFlNjRjYzYxMmEyYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P24r1kZBSzynPRKDdKRkxTEolrPerZd03erNtjXYQJY';
     const [movieInfo, setMovieInfo] = useState();
@@ -25,6 +28,7 @@ export const MovieDetail = () => {
             });
 
     }, [id]);
+    
     if (!movieInfo) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-black">

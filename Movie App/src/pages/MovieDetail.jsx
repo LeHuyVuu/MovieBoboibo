@@ -87,6 +87,5 @@ export const MovieDetail = () => {
 
             </div>
         </div>
-
     )
 }

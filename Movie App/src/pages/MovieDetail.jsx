@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { groupBy } from "lodash";
 import Banner from "../components/MediaDetail/Banner";
 import ActorList from "../components/MediaDetail/ActorList";
+import RelatedMovieList from "../components/MediaDetail/RelatedMovieList";
 
 
 export const MovieDetail = () => {
@@ -12,6 +13,7 @@ export const MovieDetail = () => {
     const { id } = useParams();
     const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDk3NDIwMDlmZTM4ZTUxYWE5Zjc4YjkxNDdjMzZjMyIsIm5iZiI6MTczNDEwMjY5OS40MjksInN1YiI6IjY3NWM0ZWFiMzhlOWFlNjRjYzYxMmEyYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P24r1kZBSzynPRKDdKRkxTEolrPerZd03erNtjXYQJY';
     const [movieInfo, setMovieInfo] = useState();
+    const [movieRelated, setMovieRelated] = useState([]);
     useEffect(() => {
         fetch(`https://api.themoviedb.org/3/movie/${id}?append_to_response=release_dates,credits`, {
             method: 'GET',
@@ -25,6 +27,25 @@ export const MovieDetail = () => {
                 console.log("***  ID here: " + id);
                 console.log("===>>>>> data movie :", data);
                 setMovieInfo(data);
+            });
+
+    }, [id]);
+
+
+    useEffect(() => {
+        fetch(`https://api.themoviedb.org/3/movie/${id}/recommendations`, {
+            method: 'GET',
+            headers: {
+                'Accept': 'application/json',
+                'Authorization': `Bearer ${accessToken}`
+            }
+        })
+            .then(async (res) => {
+                const data = await res.json();
+                console.log({recommendation: data})
+                const relatedMovie = (data.results || []).slice(0,12);
+                setMovieRelated(relatedMovie);
+    
             });
 
     }, [id]);
@@ -59,6 +80,7 @@ export const MovieDetail = () => {
             <div className="flex bg-black text-gray-500 flex-col lg:flex-row gap-10 p-8">
                 <div className="flex-[2]">
                     <ActorList actors={movieInfo.credits?.cast || []} />
+                    <RelatedMovieList mediaList={movieRelated}/>
                 </div>
                 <div className="flex-[1] p-8 bg-black-800 rounded-lg shadow-lg">
                     <h2 className="text-2xl font-bold text-gray-100 mb-4 border-b-2 border-gray-600 inline-block">

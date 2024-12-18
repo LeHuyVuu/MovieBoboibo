@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import { MovieCard } from "./MovieCard";
 
 const MediaList = ({ TABS, Title }) => {
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDk3NDIwMDlmZTM4ZTUxYWE5Zjc4YjkxNDdjMzZjMyIsIm5iZiI6MTczNDEwMjY5OS40MjksInN1YiI6IjY3NWM0ZWFiMzhlOWFlNjRjYzYxMmEyYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P24r1kZBSzynPRKDdKRkxTEolrPerZd03erNtjXYQJY';
     const [mediaList, setMediaList] = useState([]);
     const [activeTabId, setActiveTabId] = useState(TABS[0]?.id);
 
@@ -13,7 +12,7 @@ const MediaList = ({ TABS, Title }) => {
                 method: 'GET',
                 headers: {
                     'Accept': 'application/json',
-                    'Authorization': `Bearer ${accessToken}`
+                      'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
                 }
             })
                 .then(async (res) => {

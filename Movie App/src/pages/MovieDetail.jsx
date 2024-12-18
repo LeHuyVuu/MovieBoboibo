@@ -4,6 +4,7 @@ import { groupBy } from "lodash";
 import Banner from "../components/MediaDetail/Banner";
 import ActorList from "../components/MediaDetail/ActorList";
 import RelatedMovieList from "../components/MediaDetail/RelatedMovieList";
+import InfomationMedia from "../components/MediaDetail/InfomationMedia";
 
 
 export const MovieDetail = () => {
@@ -11,7 +12,6 @@ export const MovieDetail = () => {
         window.scrollTo(0, 0);
     }, []);
     const { id } = useParams();
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDk3NDIwMDlmZTM4ZTUxYWE5Zjc4YjkxNDdjMzZjMyIsIm5iZiI6MTczNDEwMjY5OS40MjksInN1YiI6IjY3NWM0ZWFiMzhlOWFlNjRjYzYxMmEyYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P24r1kZBSzynPRKDdKRkxTEolrPerZd03erNtjXYQJY';
     const [movieInfo, setMovieInfo] = useState();
     const [movieRelated, setMovieRelated] = useState([]);
     useEffect(() => {
@@ -19,7 +19,7 @@ export const MovieDetail = () => {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
             }
         })
             .then(async (res) => {
@@ -37,19 +37,19 @@ export const MovieDetail = () => {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                 'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
             }
         })
             .then(async (res) => {
                 const data = await res.json();
-                console.log({recommendation: data})
-                const relatedMovie = (data.results || []).slice(0,12);
+                console.log({ recommendation: data })
+                const relatedMovie = (data.results || []).slice(0, 12);
                 setMovieRelated(relatedMovie);
-    
+
             });
 
     }, [id]);
-    
+
     if (!movieInfo) {
         return (
             <div className="flex items-center justify-center min-h-screen bg-black">
@@ -80,33 +80,14 @@ export const MovieDetail = () => {
             <div className="flex bg-black text-gray-500 flex-col lg:flex-row gap-10 p-8">
                 <div className="flex-[2]">
                     <ActorList actors={movieInfo.credits?.cast || []} />
-                    <RelatedMovieList mediaList={movieRelated}/>
                 </div>
-                <div className="flex-[1] p-8 bg-black-800 rounded-lg shadow-lg">
-                    <h2 className="text-2xl font-bold text-gray-100 mb-4 border-b-2 border-gray-600 inline-block">
-                        Information
-                    </h2>
-                    <ul className="space-y-4 text-gray-400">
-                        <li>
-                            <span className="font-semibold text-gray-200">Original Name:</span> House of the Dragon
-                        </li>
-                        <li>
-                            <span className="font-semibold text-gray-200">Original Country:</span> 🇺🇸 United States
-                        </li>
-                        <li>
-                            <span className="font-semibold text-gray-200">Status:</span> Returning Series
-                        </li>
-                        <li className="flex items-center">
-                            <span className="font-semibold text-gray-200 mr-2">Network:</span>
-                            <img
-                                src="https://upload.wikimedia.org/wikipedia/commons/1/17/HBO_logo.svg"
-                                alt="HBO Logo"
-                                className="h-6"
-                            />
-                        </li>
-                    </ul>
+                <div className="flex-[1]">
+                    <InfomationMedia information={movieInfo}/>
                 </div>
 
+            </div>
+            <div>
+                <RelatedMovieList mediaList={movieRelated} />
             </div>
         </div>
     )

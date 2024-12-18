@@ -7,14 +7,13 @@ const FeatureMovies = () => {
     const [movies, setMovies] = useState([]);
     const [activeMovieId, setActiveMovieId] = useState();
 
-    const accessToken = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjNDk3NDIwMDlmZTM4ZTUxYWE5Zjc4YjkxNDdjMzZjMyIsIm5iZiI6MTczNDEwMjY5OS40MjksInN1YiI6IjY3NWM0ZWFiMzhlOWFlNjRjYzYxMmEyYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.P24r1kZBSzynPRKDdKRkxTEolrPerZd03erNtjXYQJY';
 
     useEffect(() => {
         fetch('https://api.themoviedb.org/3/movie/popular', {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
-                'Authorization': `Bearer ${accessToken}`
+                  'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
             }
         })
             .then(async (res) => {

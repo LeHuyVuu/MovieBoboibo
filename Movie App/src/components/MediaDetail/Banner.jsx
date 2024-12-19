@@ -114,6 +114,11 @@ const Banner = ({mediaInfo}) => {
                             >
                                 <path d="M7 6v12l10-6z" />
                             </svg>
+                            <button
+                                onClick={() => setIsShowing(true)}
+                                className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                            >
+                                <FontAwesomeIcon icon={faPlay} className="mr-1" />
                             <span className="font-semibold text-lg">Trailer</span>
                         </a>
                     )}

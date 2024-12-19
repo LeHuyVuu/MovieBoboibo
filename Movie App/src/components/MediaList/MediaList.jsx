@@ -22,23 +22,23 @@ const MediaList = ({ TABS, Title }) => {
             <div className="flex flex-col items-start gap-4">
                 {/* Phần tiêu đề */}
                 <p className="text-2xl font-bold">{Title}</p>
-
                 {/* Phần danh sách */}
-                {/* Phần danh sách */}
-                <ul className="flex items-center justify-start space-x-2  rounded-full px-2 py-1 w-full sm:w-3/4 md:w-2/3 lg:w-1/4 bg-black">
+                <ul className="flex items-center justify-start space-x-2 rounded-full px-2 py-1 w-full sm:w-3/4 md:w-2/3 lg:w-1/4 xl:w-1/4 2xl:w-1/5 bg-black">
                     {TABS.map((tabItem) => (
                         <li
                             onClick={() => handleTabChange(tabItem.id)}
                             key={tabItem.id}
-                            className={`px-6 py-2 rounded-full cursor-pointer transition duration-300 ease-in-out text-sm lg:text-base ${tabItem.id === localStorage.getItem("activeTabId")
-                                    ? "bg-white text-black hover:bg-gray-300 shadow-md" // Tab được chọn
-                                    : "bg-gray-800 text-white hover:bg-gray-600" // Tab không được chọn
+                            className={`px-4 sm:px-6 lg:px-8 py-2 rounded-full cursor-pointer transition duration-300 ease-in-out text-xs sm:text-sm md:text-base lg:text-lg text-center whitespace-nowrap ${tabItem.id === localStorage.getItem("activeTabId")
+                                ? "bg-white text-black hover:bg-gray-300 shadow-md" // Tab được chọn
+                                : "bg-gray-800 text-white hover:bg-gray-600" // Tab không được chọn
                                 }`}
                         >
                             {tabItem.name}
                         </li>
+
                     ))}
                 </ul>
+
 
 
             </div>

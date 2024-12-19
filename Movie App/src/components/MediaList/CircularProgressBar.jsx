@@ -5,9 +5,12 @@ export const CircularProgressBar = ({
   strokeColor = "#FFD700",
   textColor = "white",
 }) => {
+  // Đảm bảo giá trị `percent` hợp lệ
+  const validPercent = isNaN(percent) || percent === null || percent === undefined ? 0 : percent;
+
   const radius = size / 2 - strokeWidth; // Bán kính của vòng tròn
   const circumference = 2 * Math.PI * radius; // Chu vi vòng tròn
-  const offset = circumference - (percent / 100) * circumference; // Phần bị ẩn dựa trên percent
+  const offset = circumference - (validPercent / 100) * circumference; // Phần bị ẩn dựa trên validPercent
 
   return (
     <div style={{ width: size, height: size }}>
@@ -52,7 +55,7 @@ export const CircularProgressBar = ({
           fontWeight="bold"
           dy=".3em"
         >
-          {percent}
+          {validPercent}
         </text>
       </svg>
     </div>

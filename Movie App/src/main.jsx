@@ -1,4 +1,4 @@
-import { StrictMode } from 'react'
+
 import { createRoot } from 'react-dom/client'
 import './index.css'
 
@@ -9,6 +9,7 @@ import { MovieDetail } from './pages/MovieDetail.jsx'
 import RootLayout from './pages/RootLayout.jsx'
 import { TVShowDetail } from './pages/TVShowDetail.jsx'
 import ModalProvider from './context/ModalProvider.jsx'
+
 
 const router = createBrowserRouter([
   {
@@ -33,8 +34,10 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
 
 
-  <ModalProvider>
-    <RouterProvider router={router} />
-  </ModalProvider>
+ 
+    <ModalProvider>
+      <RouterProvider router={router} />
+    </ModalProvider>
+
 
 )

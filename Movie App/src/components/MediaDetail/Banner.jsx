@@ -1,6 +1,35 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useModalContext } from "../../context/ModalProvider"
 import { CircularProgressBar } from "../MediaList/CircularProgressBar"
+import { faPlay } from "@fortawesome/free-solid-svg-icons";
 
-const Banner = ({mediaInfo}) => {
+const Banner = ({ mediaInfo }) => {
+    const { openModal } = useModalContext();
+    const handleTrailerClick = () => {
+        const trailer = mediaInfo?.videos?.results?.find(
+            (video) => video.type === "Trailer"
+        );
+
+        // Nếu tìm thấy trailer, tạo URL YouTube
+        const trailerVideoKey = trailer?.key || null;
+
+        const videoUrl = trailerVideoKey
+            ? `https://www.youtube.com/embed/${trailerVideoKey}`
+            : "https://example.com/default-trailer.mp4"; // Fallback nếu không có trailer
+        const modalContent = (
+            <div className="w-full max-w-6xl mx-auto h-[500px] rounded-lg overflow-hidden">
+                <iframe
+                    src={videoUrl}
+                    title="Trailer"
+                    allow="autoplay; fullscreen"
+                    className="w-full h-full"
+                ></iframe>
+            </div>
+
+
+        );
+        openModal(modalContent); // Hiển thị modal với nội dung video
+    };
     return (
 
 
@@ -53,7 +82,17 @@ const Banner = ({mediaInfo}) => {
                     </div>
 
                     {/* Vote Average */}
-                    <CircularProgressBar percent={mediaInfo.vote_average} />
+                    <CircularProgressBar
+                        percent={Math.round(mediaInfo.vote_average * 10)}
+                        strokeColor={
+                            mediaInfo.vote_average >= 7
+                                ? "green"
+                                : mediaInfo.vote_average >= 5
+                                    ? "orange"
+                                    : "red"
+                        }
+                    />
+
 
 
                     {/* Overview */}
@@ -99,29 +138,19 @@ const Banner = ({mediaInfo}) => {
 
                     {/* Homepage */}
                     {mediaInfo?.homepage && (
-                        <a
-                            href={mediaInfo.homepage}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center text-white hover:text-gray-300 transition duration-300"
-                        >
-                            {/* Play Icon */}
-                            <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-6 w-6 mr-2"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                            >
-                                <path d="M7 6v12l10-6z" />
-                            </svg>
+                        <div className="flex items-center space-x-4">
+
+                            {/* Trailer Button */}
                             <button
-                                onClick={() => setIsShowing(true)}
-                                className="flex items-center bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition duration-300"
+                                onClick={handleTrailerClick}
+                                className="flex items-center px-5 py-3 bg-white text-black font-bold rounded-lg shadow-md transition-transform duration-300 ease-in-out  hover:-translate-y-1 hover:shadow-lg"
                             >
-                                <FontAwesomeIcon icon={faPlay} className="mr-1" />
-                            <span className="font-semibold text-lg">Trailer</span>
-                        </a>
+                                <FontAwesomeIcon icon={faPlay} className="mr-2" />
+                                <span>Watch Trailer</span>
+                            </button>
+                        </div>
                     )}
+
                 </div>
             </div>
         </div>

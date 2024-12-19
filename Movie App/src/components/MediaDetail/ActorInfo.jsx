@@ -21,9 +21,7 @@ const ActorInfo = ({ actor }) => {
             <p className="text-gray-400 text-sm mb-2 italic text-center">
                 {actor.character || "No role specified"}
             </p>
-            <span className="text-gray-300 text-xs px-3 py-1 rounded-full bg-gray-700">
-                {actor.episodes || 0} Episodes
-            </span>
+          
         </div>
     );
 };

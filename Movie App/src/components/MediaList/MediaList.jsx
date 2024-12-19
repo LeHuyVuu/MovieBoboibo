@@ -1,30 +1,21 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { MovieCard } from "./MovieCard";
+import useFetch from "../../hooks/useFetch";
 
 const MediaList = ({ TABS, Title }) => {
-    const [mediaList, setMediaList] = useState([]);
+
     const [activeTabId, setActiveTabId] = useState(TABS[0]?.id);
 
-    useEffect(() => {
-        const url = TABS.find(tab => tab.id === activeTabId)?.url
-        if (url) {
-            fetch(url, {
-                method: 'GET',
-                headers: {
-                    'Accept': 'application/json',
-                      'Authorization': `Bearer ${import.meta.env.VITE_API_TOKEN}`
-                }
-            })
-                .then(async (res) => {
-                    const data = await res.json();
-                    console.log("===>>>>> data movie trending:", data);
-                    const trendingMediaList = data.results.slice(0, 12);
-                    setMediaList(trendingMediaList);
-                });
-        }
-    }, [activeTabId, TABS]);
+    const url = TABS.find(tab => tab.id === activeTabId)?.url
+    const { data } = useFetch({ url })
+    const mediaList = (data.results || []).slice(0, 12);
+    console.log({ mediaList });
 
-    
+    const handleTabChange = (tabId) => {
+        setActiveTabId(tabId);
+        localStorage.setItem("activeTabId", tabId);
+    };
+
 
     return (
         <div className="px-8 py-10 bg-black text-white">
@@ -34,23 +25,20 @@ const MediaList = ({ TABS, Title }) => {
 
                 {/* Phần danh sách */}
                 <ul className="flex items-center justify-start space-x-4 border border-white font-bold rounded-lg px-4 py-2 w-full sm:w-3/4 md:w-2/3 lg:w-1/5">
-                    {
-                        TABS.map((tabItem) => (
-                            <li
-                                onClick={() => {
-                                    setActiveTabId(tabItem.id);
-                                }}
-                                key={tabItem.id}
-                                className={`px-4 py-2 rounded-full cursor-pointer ${tabItem.id === 'all'
-                                    ? 'bg-white text-black hover:bg-gray-300'
-                                    : 'bg-black text-white hover:bg-gray-700'
-                                    }`}
-                            >
-                                {tabItem.name}
-                            </li>
-                        ))
-                    }
+                    {TABS.map((tabItem) => (
+                        <li
+                            onClick={() => handleTabChange(tabItem.id)}
+                            key={tabItem.id}
+                            className={`px-4 py-2 rounded-full cursor-pointer transition duration-300 ease-in-out ${tabItem.id === localStorage.getItem("activeTabId")
+                                    ? "bg-white text-black hover:bg-gray-300" // Tab được chọn
+                                    : "bg-black text-white hover:bg-gray-700" // Tab không được chọn
+                                }`}
+                        >
+                            {tabItem.name}
+                        </li>
+                    ))}
                 </ul>
+
             </div>
             <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 auto-rows-fr p-4">
                 {mediaList.map((media) => (
@@ -61,6 +49,7 @@ const MediaList = ({ TABS, Title }) => {
                         releaseDate={media.release_date}
                         poster={media.poster_path}
                         point={media.vote_average}
+                        mediaType={media.media_type}
                     />
                 ))}
             </div>

@@ -7,6 +7,8 @@ import HomePage from './pages/HomePage.jsx'
 
 import { MovieDetail } from './pages/MovieDetail.jsx'
 import RootLayout from './pages/RootLayout.jsx'
+import { TVShowDetail } from './pages/TVShowDetail.jsx'
+import ModalProvider from './context/ModalProvider.jsx'
 
 const router = createBrowserRouter([
   {
@@ -14,11 +16,15 @@ const router = createBrowserRouter([
     children: [
       {
         path: '/',
-        element: <HomePage/>
-      }, 
+        element: <HomePage />
+      },
       {
         path: '/movie/:id',
-        element: <MovieDetail/>
+        element: <MovieDetail />
+      },
+      {
+        path: '/tv/:id',
+        element: <TVShowDetail />
       }
     ]
   }
@@ -27,7 +33,8 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
 
 
-  <StrictMode>
-      <RouterProvider router={router}/>
-  </StrictMode>,
+  <ModalProvider>
+    <RouterProvider router={router} />
+  </ModalProvider>
+
 )

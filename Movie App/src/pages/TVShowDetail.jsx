@@ -3,13 +3,13 @@ import { useEffect } from "react";
 import { groupBy } from "lodash";
 import Banner from "../components/MediaDetail/Banner";
 import ActorList from "../components/MediaDetail/ActorList";
-import RelatedMovieList from "../components/MediaDetail/RelatedMovieList";
 import InfomationMedia from "../components/MediaDetail/InfomationMedia";
 import useFetch from "../hooks/useFetch";
 import LoadingComponents from "../components/FeatureMovies/LoadingComponents";
+import RelatedTVShowList from "../components/MediaDetail/RelatedTVShowList";
 
 
-export const MovieDetail = () => {
+export const TVShowDetail = () => {
     useEffect(() => {
         window.scrollTo(0, 0);
     }, []);
@@ -18,14 +18,14 @@ export const MovieDetail = () => {
 
 
     const { data: movieInfo, isLoading } = useFetch({
-        url: `/movie/${id}?append_to_response=release_dates,credits,videos`,
+        url: `/tv/${id}?append_to_response=release_dates,credits`,
     })
 
 
     const { data: recommendationsResponse } = useFetch({
-        url: `/movie/${id}/recommendations`,
+        url: `/tv/${id}/recommendations`,
     })
-    const movieRelated = recommendationsResponse.results || [];
+    const tvShowRelated = recommendationsResponse.results || [];
 
 
 
@@ -57,7 +57,7 @@ export const MovieDetail = () => {
 
             </div>
             <div>
-                <RelatedMovieList mediaList={movieRelated} />
+                <RelatedTVShowList mediaList={tvShowRelated} />
             </div>
         </div>
     )

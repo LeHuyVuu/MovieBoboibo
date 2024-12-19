@@ -1,22 +1,24 @@
-import { faPlay } from '@fortawesome/free-solid-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
+import { Link } from 'react-router-dom';
 
 const Movie = (props) => {
-    console.log({ props });
+
+    const { data: { backdrop_path, title, release_date, overview, id } } = props;
+
+
 
     if (!props.data) {
         return null; // Trả về null nếu data không tồn tại
     }
 
-    const { data: { backdrop_path, title, release_date, overview } } = props;
 
+    console.log(props.key)
     return (
         <div>
             <img src={`https://image.tmdb.org/t/p/original${backdrop_path}`} className="aspect-video brightness-50 w-full" />
             <div className="absolute bottom-[20%] left-8 w-1/2 text-white sm:w-1/3">
                 <p className="font-extrabold sm:text-[3vw] mb-2">{title}</p>
                 <div>
-                    <p className="text-gray-400 border border-gray-400 inline-block p-1 mb-1">PG13</p>
                     <p className="text-[1.3vw] font-bold">{release_date}</p>
                 </div>
                 <div>
@@ -27,10 +29,13 @@ const Movie = (props) => {
                         </p>
                     </div>
                     <div className="mt-4">
-                        <button className="bg-white text-black py-2 px-4 rounded me-3 text-[10px] lg: text-sm">
-                            <FontAwesomeIcon icon={faPlay} />Trailer
-                        </button>
-                        <button className='bg-slate-300/55 text-white py-2 px-4 rounded me-3 text-[10px] lg: text-sm'>View detail</button>
+                        <Link to={`/movie/${id}`}>
+                            <button className="bg-white text-black font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out text-xs lg:text-sm">
+                                View Details
+                            </button>
+
+                        </Link>
+
                     </div>
                 </div>
             </div>

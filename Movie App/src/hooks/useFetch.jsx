@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
 
 const DEFAULT_HEADERS = {
@@ -6,7 +7,7 @@ const DEFAULT_HEADERS = {
 };
 
 export default function useFetch({ url = "", method = "GET", headers = {} }) {
-    const [data, setData] = useState();
+    const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
     useEffect(() => {
@@ -29,7 +30,7 @@ export default function useFetch({ url = "", method = "GET", headers = {} }) {
             .finally(() => {
                 setIsLoading(false);
             });
-    }, [url, method, headers]);
+    }, [url, method, JSON.stringify(headers)]);
 
     return { isLoading, data };
 }

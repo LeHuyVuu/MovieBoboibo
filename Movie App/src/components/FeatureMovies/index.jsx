@@ -37,18 +37,14 @@ const FeatureMovies = () => {
                 return () => clearInterval(intervalId);
             });
     }, []);
-    // console.log("Movie after handling:", JSON.stringify(movies, 0, 3));
 
     
 
     return (
         <div className="relative">
             {
-                movies.filter((movie) => movie.id === activeMovieId).map(movie => <Movie key={movie.id} data={movie} />)
+                movies.filter((movie) => movie.id === activeMovieId).map(movie => <Movie key={movie.id} data={movie}/>)
             }
-       
-
-
             <PaginateIndicator movies={movies} activeMovieId={activeMovieId} setActiveMovieId={setActiveMovieId} />
         </div>
     );

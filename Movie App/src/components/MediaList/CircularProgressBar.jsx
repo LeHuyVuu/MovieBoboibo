@@ -3,7 +3,7 @@
 export const CircularProgressBar = ({ percent = 69, size = 100, strokeWidth = 8, strokeColor = "#FFD700", textColor = "white" }) => {
   const radius = size / 2 - strokeWidth; // Bán kính của vòng tròn
   const circumference = 2 * Math.PI * radius; // Chu vi vòng tròn
-  const offset = circumference - (percent / 100) * circumference; // Phần bị ẩn dựa trên percent
+  const offset = percent // Phần bị ẩn dựa trên percent
 
   return (
     <div>

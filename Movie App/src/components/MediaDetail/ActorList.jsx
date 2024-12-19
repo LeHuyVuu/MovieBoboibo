@@ -5,7 +5,7 @@ const ActorList = ({ actors }) => {
     const [showMore, setShowMore] = useState(false);
 
     // Hàm xử lý toggle trạng thái showMore
-  
+
 
     return (
         <div>
@@ -27,16 +27,19 @@ const ActorList = ({ actors }) => {
             </div>
 
             {/* Show More/Less Button */}
-            <div className="flex justify-center items-center p-6">
-                <button
-                    onClick={()=> setShowMore(!showMore)}
-                    className="font-bold bg-white text-black rounded px-6 py-2 shadow-md 
-                    hover:shadow-lg transition-transform duration-300 transform hover:scale-110 
-                    hover:bg-gray-200 cursor-pointer"
-                >
-                    {showMore ? "Show less" : "Show more"}
-                </button>
-            </div>
+            {actors != null && (
+                <div className="flex justify-center items-center p-6">
+                    <button
+                        onClick={() => setShowMore(!showMore)}
+                        className="font-bold bg-white text-black rounded px-6 py-2 shadow-md 
+                       hover:shadow-lg transition-transform duration-300 transform hover:scale-110 
+                       hover:bg-gray-200 cursor-pointer"
+                    >
+                        {showMore ? "Show less" : "Show more"}
+                    </button>
+                </div>
+            )}
+
         </div>
     );
 };

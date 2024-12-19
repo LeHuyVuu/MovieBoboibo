@@ -31,7 +31,7 @@ const FeatureMovies = () => {
                         const nextIndex = (currentIndex + 1) % popularMovies.length;  // Quay lại đầu nếu đến cuối
                         return popularMovies[nextIndex].id;
                     });
-                }, 20000);
+                }, 4000);
 
                 // Cleanup: Clear interval khi component unmount hoặc khi movie list thay đổi
                 return () => clearInterval(intervalId);

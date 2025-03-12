@@ -1,12 +1,13 @@
 import { useParams } from "react-router-dom"
 import { useEffect } from "react";
 import { groupBy } from "lodash";
-import Banner from "../components/MediaDetail/Banner";
-import ActorList from "../components/MediaDetail/ActorList";
-import RelatedMovieList from "../components/MediaDetail/RelatedMovieList";
-import InfomationMedia from "../components/MediaDetail/InfomationMedia";
-import useFetch from "../hooks/useFetch";
-import LoadingComponents from "../components/FeatureMovies/LoadingComponents";
+import LoadingComponents from "../../components/FeatureMovies/LoadingComponents";
+import useFetch from "../../hooks/useFetch";
+import Banner from "../../components/MediaDetail/Banner";
+import ActorList from "../../components/MediaDetail/ActorList";
+import InfomationMedia from "../../components/MediaDetail/InfomationMedia";
+import RelatedMovieList from "../../components/MediaDetail/RelatedMovieList";
+
 
 
 export const MovieDetail = () => {

@@ -6,12 +6,9 @@ import { Outlet } from 'react-router-dom'
 const RootLayout = () => {
   return (
     <div>
-        <Header/>
-
-
-        <Outlet/>
-
-        <Footer/>
+      <Header />
+      <Outlet />
+      <Footer />
     </div>
   )
 }

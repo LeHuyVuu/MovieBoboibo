@@ -3,12 +3,12 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
-import HomePage from './pages/HomePage.jsx'
+import HomePage from './app/pages/HomePage/HomePage.jsx'
+import { MovieDetail } from './app/pages/MovieDetail/MovieDetail.jsx'
+import { TVShowDetail } from './app/pages/TVShowDetail/TVShowDetail.jsx'
+import ModalProvider from './app/context/ModalProvider.jsx'
+import RootLayout from './app/layouts/RootLayout.jsx'
 
-import { MovieDetail } from './pages/MovieDetail.jsx'
-import RootLayout from './pages/RootLayout.jsx'
-import { TVShowDetail } from './pages/TVShowDetail.jsx'
-import ModalProvider from './context/ModalProvider.jsx'
 
 
 const router = createBrowserRouter([
@@ -34,10 +34,10 @@ const router = createBrowserRouter([
 createRoot(document.getElementById('root')).render(
 
 
- 
-    <ModalProvider>
-      <RouterProvider router={router} />
-    </ModalProvider>
+
+  <ModalProvider>
+    <RouterProvider router={router} />
+  </ModalProvider>
 
 
 )

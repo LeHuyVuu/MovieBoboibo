@@ -1,7 +1,7 @@
 
-import FeatureMovies from "../components/FeatureMovies";
-import MediaList from "../components/MediaList/MediaList";
-import { TRENDING_TABS } from "../libs/constant";
+import FeatureMovies from "../../components/FeatureMovies";
+import MediaList from "../../components/MediaList/MediaList";
+import { TRENDING_TABS } from "../../libs/constant";
 
 function HomePage() {
 

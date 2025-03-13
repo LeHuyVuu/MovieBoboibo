@@ -8,8 +8,9 @@ function HomePage() {
 
   return (
     <div>
+      
       <FeatureMovies />
-      <MediaList TABS={TRENDING_TABS} Title="TOP Trending" />
+      <MediaList TABS={TRENDING_TABS} Title="NOW SHOWING" />
     </div>
   );
 }

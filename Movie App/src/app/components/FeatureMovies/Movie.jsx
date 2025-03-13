@@ -1,3 +1,5 @@
+import { faShoppingCart } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 
 const Movie = (props) => {
@@ -34,8 +36,16 @@ const Movie = (props) => {
                 {/* Button */}
                 <div className="mt-4">
                     <Link to={`/movie/${id}`}>
-                        <button className="bg-white text-black font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out text-xs lg:text-sm">
+                        <button className="text-white font-bold py-2 px-6 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out text-xs lg:text-sm mr-4">
                             View Details
+                        </button>
+                    </Link>
+                    <Link to={`/booking`}>
+
+                        <button className="bg-white text-black font-extrabold py-2 px-6 rounded-full shadow-md hover:scale-105 hover:shadow-lg transition-all duration-300 ease-in-out text-xs lg:text-sm">
+                        <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+
+                            BOOK NOW
                         </button>
                     </Link>
                 </div>

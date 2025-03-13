@@ -26,7 +26,7 @@ export const Header = () => {
             }`}
         >
           {/* Logo */}
-          <Link>
+          <Link to="/">
             <img
               src="../netflix.png"
               className="w-8 sm:w-10 lg:w-12 hover:scale-110 transition-transform duration-300 ease-in-out"
@@ -35,7 +35,7 @@ export const Header = () => {
           </Link>
 
           {/* Menu chính giữa */}
-          <nav className="hidden sm:flex gap-4">
+          {/* <nav className="hidden sm:flex gap-4">
             <a
               href="#"
               className="hover:text-gray-400 transition text-sm lg:text-base hover:underline transform transition-transform duration-700 ease-in-out"
@@ -48,7 +48,7 @@ export const Header = () => {
             >
               TV Show
             </a>
-          </nav>
+          </nav> */}
         </div>
 
         {/* Nút Search bên phải cho màn hình lớn */}

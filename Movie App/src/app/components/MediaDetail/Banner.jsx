@@ -105,8 +105,8 @@ const Banner = ({ mediaInfo }) => {
                   mediaInfo.vote_average >= 7
                     ? "green"
                     : mediaInfo.vote_average >= 5
-                    ? "orange"
-                    : "red"
+                      ? "orange"
+                      : "red"
                 }
               />
               <h2 className="text-xl font-semibold mb-2">Overview</h2>
@@ -138,8 +138,8 @@ const Banner = ({ mediaInfo }) => {
                 <span className="font-semibold">Languages: </span>
                 {mediaInfo?.spoken_languages?.length > 0
                   ? mediaInfo.spoken_languages
-                      .map((lang) => lang.name)
-                      .join(", ")
+                    .map((lang) => lang.name)
+                    .join(", ")
                   : "N/A"}
               </div>
               {mediaInfo?.homepage && (
@@ -151,6 +151,13 @@ const Banner = ({ mediaInfo }) => {
                     <FontAwesomeIcon icon={faPlay} className="mr-2" />
                     <span>Watch Trailer</span>
                   </button>
+                  <button
+                    className="flex items-center px-6 py-3 bg-red-600 text-black font-semibold rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
+                  >
+                    <FontAwesomeIcon icon={faPlay} className="mr-2" />
+                    <span>Book Ticket</span>
+                  </button>
+
                 </div>
               )}
             </div>

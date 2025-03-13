@@ -8,7 +8,7 @@ const PageNotFound = () => {
                     404
                 </h1>
                 <p className="text-2xl mb-6 text-white animate__animated animate__fadeIn animate__delay-2s">
-                    Oops! The page you're looking for cannot be found.
+                    Oops! The page you`re looking for cannot be found.
                 </p>
                 <Link
                     to="/"

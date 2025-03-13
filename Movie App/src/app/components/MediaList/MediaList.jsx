@@ -20,8 +20,11 @@ const MediaList = ({ TABS, Title }) => {
     return (
         <div className="px-8 py-10 bg-black text-white">
             <div className="flex flex-col items-start gap-4">
-                {/* Phần tiêu đề */}
-                <p className="text-2xl font-bold">{Title}</p>
+                { /* Phần tiêu đề */}
+                <p className="text-4xl font-bold text-center w-full mb-6 text-transparent bg-clip-text bg-gradient-to-r from-red-600 via-yellow-500 to-red-600 animate-glow hover:animate-glowHover shadow-title">
+                    {Title}
+                </p>
+
                 {/* Phần danh sách */}
                 {/* <ul className="flex items-center justify-start space-x-2 rounded-full px-2 py-1 w-full sm:w-3/4 md:w-2/3 lg:w-1/4 xl:w-1/4 2xl:w-1/5 bg-black">
                     {TABS.map((tabItem) => (

@@ -18,7 +18,7 @@ export const Header = () => {
   }, []);
 
   return (
-    <div>
+    <div >
       <header className="h-14 lg:h-20 bg-black flex justify-between items-center px-4 sm:px-6 lg:px-8 text-white relative">
         {/* Logo và Menu chính giữa */}
         <div
@@ -33,8 +33,8 @@ export const Header = () => {
               alt="Logo"
             />
           </Link>
-
-          {/* Menu chính giữa */}
+          
+         
           {/* <nav className="hidden sm:flex gap-4">
             <a
               href="#"
@@ -50,7 +50,13 @@ export const Header = () => {
             </a>
           </nav> */}
         </div>
-
+         {/* Menu chính giữa */}
+        <div  >
+            <Link className=" mr-5 hover:text-red-400" to="/Movies"> Movies</Link>
+            <Link className=" mr-5 hover:text-red-400" to="/Theaters"> Theaters</Link>
+            <Link className=" mr-5 hover:text-red-400" to="/Discount"> Discount</Link>
+            <Link className=" mr-5 hover:text-red-400" to="/Contact"> Contact</Link>
+          </div>
         {/* Nút Search bên phải cho màn hình lớn */}
         <div
           className={`hidden sm:flex items-center gap-2 relative transform transition-all duration-700 ease-in-out ${hasMounted ? "translate-x-0 opacity-100" : "translate-x-10 opacity-0"

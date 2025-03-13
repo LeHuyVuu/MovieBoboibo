@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useModalContext } from "../../context/ModalProvider";
 import { CircularProgressBar } from "../MediaList/CircularProgressBar";
-import { faPlay } from "@fortawesome/free-solid-svg-icons";
+import { faPlay, faShoppingCart } from "@fortawesome/free-solid-svg-icons";
+import { Link } from "react-router-dom";
 
 const Banner = ({ mediaInfo }) => {
   const { openModal } = useModalContext();
@@ -146,18 +147,20 @@ const Banner = ({ mediaInfo }) => {
                 <div className="flex items-center space-x-4">
                   <button
                     onClick={handleTrailerClick}
-                    className="flex items-center px-5 py-3 bg-white text-black font-bold rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+                    className="flex items-center px-5 py-3  text-white font-bold rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
                   >
                     <FontAwesomeIcon icon={faPlay} className="mr-2" />
                     <span>Watch Trailer</span>
                   </button>
-                  <button
-                    className="flex items-center px-6 py-3 bg-red-600 text-black font-semibold rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
-                  >
-                    <FontAwesomeIcon icon={faPlay} className="mr-2" />
-                    <span>Book Ticket</span>
-                  </button>
+                  <Link to="/booking">
+                    <button
+                      className="flex items-center px-6 py-3 bg-white text-black font-semibold rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
+                    >
+                      <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                      <span>BOOK TICKET</span>
+                    </button>
 
+                  </Link>
                 </div>
               )}
             </div>

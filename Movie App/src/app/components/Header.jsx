@@ -28,8 +28,8 @@ export const Header = () => {
           {/* Logo */}
           <Link to="/">
             <img
-              src="../netflix.png"
-              className="w-8 sm:w-10 lg:w-12 hover:scale-110 transition-transform duration-300 ease-in-out"
+              src="src\app\assets\img\logo.jpg"
+              className="w-8 sm:w-10 lg:w-12 hover:scale-110 transition-transform duration-300 ease-in-out rounded-full"
               alt="Logo"
             />
           </Link>

@@ -1,18 +1,15 @@
 import React, { useState } from 'react';
 import './BookingMovie.css';
 
-import { AvailableTime, TypeOfTicket } from './data';
+import { AvailableTime, TypeOfTicket, ComboFood } from './data';
+import FoodPNG from './ComboFood.png';
+import BookingSeat from './BookingSeat';
 
 export default function BookingMovie() {
-
-    const GuessedPassword = [];
 
     const [ChosenDay, setChosenDay] = useState(new Date().toLocaleString('en-US', { weekday: 'short' }));
     const [ChosenDate, setChosenDate] = useState(new Date().toISOString().split('T')[0]);
     const [ChosenTime, setChosenTime] = useState({ Time: AvailableTime[0].Time, Category: '' });
-    const [ChildTicket, setChildTicket] = useState(0);
-    const [AdultTicket, setAdultTicket] = useState(0);
-    const [AdultCoupleTicket, setAdultCoupleTicket] = useState(0);
 
     const [Ticket, setTicket] = useState({
         Child: 0,
@@ -53,16 +50,16 @@ export default function BookingMovie() {
         <div className='bookingmovie-container'>
             <h1>BOOKING MOVIE</h1>
 
-            {/* <Form.Group controlId='movieTheater' className='form-group'>
+            <form controlId='movieTheater' className='form-group'>
                 <h2>Choose Theater</h2>
-                <Form.Select>
-                    <option value="">-- Choose Theater --</option>
-                    <option value="cgv">CGV</option>
-                    <option value="lotte">Lotte Cinema</option>
-                    <option value="galaxy">Galaxy Cinema</option>
-                    <option value="bhd">BHD Star Cineplex</option>
-                </Form.Select>
-            </Form.Group> */}
+                <select>
+                    <option value='' className='opt'>-- Choose Theater --</option>
+                    <option value='cgv' className='opt'>CGV</option>
+                    <option value='lotte' className='opt'>Lotte Cinema</option>
+                    <option value='galaxy' className='opt'>Galaxy Cinema</option>
+                    <option value='bhd' className='opt'>BHD Star Cineplex</option>
+                </select>
+            </form>
 
             <div className='table-container'>
                 <div className='day-date-container'>
@@ -102,8 +99,7 @@ export default function BookingMovie() {
                                             })()}
                                         </div>
                                     </td>
-                                ))
-                                }
+                                ))}
                             </tr>
                         </tbody>
                     </table>
@@ -136,52 +132,67 @@ export default function BookingMovie() {
                 </div>
             </div>
 
-            {/* <div> */}
-                <h2>Choose Type Of Ticket</h2>
-                <div className='table-container'>
-                    <div className='type-of-ticket-container'>
-                        <table className='no-wrap align-middle table'>
-                            <thead>
-                                <tr>
-                                    {TypeOfTicket.map((ticket, index) => (
-                                        <th key={index}>{ticket.Name}</th>
-                                    ))}
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    {TypeOfTicket.map((ticket, index) => (
-                                        <td key={index}>
-                                            <div className='detail-container'>
-                                                <span>{ticket.Price} VND</span>
-                                                <div className='button-container'>
-                                                    <button className='btn' onClick={() => AddTicket(ticket.Name)}>+</button>
-                                                    <span>
-                                                        {ticket.Name === 'Child' ?
-                                                            Ticket.Child
-                                                            :
-                                                            (ticket.Name === 'Adult' ?
-                                                                Ticket.Adult
-                                                                :
-                                                                (ticket.Name === 'Adult Couple' ?
-                                                                    Ticket.AdultCouple
-                                                                    :
-                                                                    0
-                                                                )
-                                                            )
-                                                        }
-                                                    </span>
-                                                    <button className='btn' onClick={() => SubtractTicket(ticket.Name)}>-</button>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    ))}
-                                </tr>
-                            </tbody>
-                        </table>
+            <h2>Choose Type Of Ticket</h2>
+            <div className='type-of-ticket-container'>
+                <table className='no-wrap align-middle table'>
+                    <thead>
+                        <tr>
+                            {TypeOfTicket.map((ticket, index) => (
+                                <th key={index}>{ticket.Name}</th>
+                            ))}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            {TypeOfTicket.map((ticket, index) => (
+                                <td key={index}>
+                                    <div className='detail-container'>
+                                        <span>{ticket.Price} VND</span>
+                                        <div className='button-container'>
+                                            <button className='btn' onClick={() => SubtractTicket(ticket.Name)}>-</button>
+                                            {ticket.Name === 'Child' ?
+                                                <span style={{ backgroundColor: Ticket.Child !== 0 ? '#dc3545' : '' }}>{Ticket.Child}</span>
+                                                :
+                                                ticket.Name === 'Adult' ?
+                                                    <span style={{ backgroundColor: Ticket.Adult !== 0 ? '#dc3545' : '' }}>{Ticket.Adult}</span>
+                                                    :
+                                                    ticket.Name === 'Adult Couple' ?
+                                                        <span style={{ backgroundColor: Ticket.AdultCouple !== 0 ? '#dc3545' : '' }}>{Ticket.AdultCouple}</span>
+                                                        :
+                                                        <span>0</span>
+                                            }
+                                            <button className='btn' onClick={() => AddTicket(ticket.Name)}>+</button>
+                                        </div>
+                                    </div>
+                                </td>
+                            ))}
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <BookingSeat />
+
+            <div className='food-container'>
+                <h2>Choose Combo</h2>
+                {ComboFood.map((combo, index) => (
+                    <div className='food-item'>
+                        <div className='img-detail'>
+                            <img src={FoodPNG} alt='ComboFood'></img>
+                            <div className='detail'>
+                                <h3>{combo.Name}</h3>
+                                <p>{combo.Detail}</p>
+                                <p>Price: {combo.Price} VND</p>
+                            </div>
+                        </div>
+                        <div className='button'>
+                            <button className='btn'>-</button>
+                            <span>ABC</span>
+                            <button className='btn'>+</button>
+                        </div>
                     </div>
-                </div>
-            {/* </div> */}
+                ))}
+            </div>
         </div>
     )
 }

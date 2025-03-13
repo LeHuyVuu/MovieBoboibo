@@ -11,3 +11,10 @@ export const TypeOfTicket = [
     { Name: 'Adult', Price: 60000 },
     { Name: 'Adult Couple', Price: 70000 },
 ]
+
+export const ComboFood = [
+    { Name: 'Combo 1', Detail: '1 Popcorn + 1 Pepsi', Price: 35000 },
+    { Name: 'Combo 2', Detail: '1 Popcorn + 2 Pepsi', Price: 50000 },
+    { Name: 'Combo 3', Detail: '2 Popcorn + 2 Pepsi', Price: 70000 },
+    { Name: 'Combo 4', Detail: '3 Popcorn + 2 Pepsi', Price: 90000 },
+]

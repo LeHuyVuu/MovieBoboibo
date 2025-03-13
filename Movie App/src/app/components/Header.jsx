@@ -28,7 +28,7 @@ export const Header = () => {
           {/* Logo */}
           <Link to="/">
             <img
-              src="src\app\assets\img\logo.jpg"
+              src="src\app\assets\img\hell.jpg"
               className="w-8 sm:w-10 lg:w-12 hover:scale-110 transition-transform duration-300 ease-in-out rounded-full"
               alt="Logo"
             />
@@ -79,7 +79,7 @@ export const Header = () => {
                 value={searchText}
                 onChange={(e) => setSearchText(e.target.value)}
                 placeholder="Search..."
-                className="bg-transparent text-white w-full focus:outline-none  transition"
+                className="bg-transparent text-white w-full focus:outline-none transition"
               />
             )}
           </div>
@@ -123,6 +123,7 @@ export const Header = () => {
                 className="bg-gray-800 text-white px-4 py-2 rounded-md border border-gray-700 focus:outline-none focus:ring-2 focus:ring-red-500 w-full"
               />
             </div>
+            
           </div>
         )}
       </header>

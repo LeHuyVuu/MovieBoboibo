@@ -5,17 +5,19 @@ import { TVShowDetail } from '../pages/TVShowDetail/TVShowDetail'
 import RootLayout from '../layouts/RootLayout'
 import PageNotFound from '../pages/PageNotFound/PageNotFound'
 import BookingMovie from '../pages/BookingMovie/BookingMovie'
+import ScrollToTop from '../hooks/ScrollToTop'
 
 const MainRoutes = () => {
     return (
         <BrowserRouter>
+            <ScrollToTop />
             <Routes>
                 <Route path='/' element={<RootLayout />}>
                     <Route index element={<HomePage />} />
                     <Route path='/movie/:id' element={<MovieDetail />} />
                     <Route path='/tv/:id' element={<TVShowDetail />} />
-                    <Route path='/booking' element={<BookingMovie/>} />
-                    <Route path='*' element={<PageNotFound/>}/>
+                    <Route path='/booking' element={<BookingMovie />} />
+                    <Route path='*' element={<PageNotFound />} />
                 </Route>
             </Routes>
         </BrowserRouter>

@@ -21,9 +21,11 @@ const MediaList = ({ TABS, Title }) => {
 
     return (
         <>
-            <div className="bg-black  p-4">
-                <div className=" justify-center bg-white p-4 rounded-sm  flex items-center gap-3 ">
-                    <div>QUICK BOOK</div>
+            <div className="bg-black px-[150px] py-4">
+                <div className=" justify-center  py-2 bg-blue-100  rounded-xl  flex items-center gap-3 ">
+                    <div className="object-fit overflow-hidden w-[80px] h-[60px] rounded-full bg-white flex items-center justify-center">
+                        <img src="https://i.pinimg.com/736x/a8/32/79/a8327903ea0fd4f21512621aea8c01c2.jpg"></img>
+                    </div>
                     {/* Select Theater */}
                     <select className="px-3 py-2 border rounded text-black font-semibold">
                         <option>Select Theater</option>
@@ -42,7 +44,7 @@ const MediaList = ({ TABS, Title }) => {
 
 
                     {/* Booking Button */}
-                    <button className="bg-black text-white font-bold px-4 py-2 rounded-lg hover:bg-red-400">
+                    <button className="bg-gray-600 text-white font-bold px-4 py-2 rounded-lg hover:bg-red-400">
                         BOOKING
                     </button>
                 </div>

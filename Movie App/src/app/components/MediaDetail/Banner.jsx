@@ -160,7 +160,7 @@ const Banner = ({ mediaInfo }) => {
 
                 </div>
                 </div>
-                <div className="flex pb-12 flex-col justify-end h-full ">
+                <div className="flex pb-1 flex-col justify-end h-full ">
 
                   <div>
                     {mediaInfo?.homepage && (

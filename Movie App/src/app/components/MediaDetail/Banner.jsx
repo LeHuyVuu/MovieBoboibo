@@ -107,48 +107,85 @@ const Banner = ({ mediaInfo }) => {
               </div>
 
             </div>
+            <div className="flex  justify-center p-4">
+              <div className="lg:w-2/3 flex flex-col justify-center p-4">
 
-            <div className="lg:w-2/3 flex flex-col justify-center p-4">
+                <p className="text-xl text-white mb-4">
+                  {mediaInfo?.tagline || ""}
+                </p>
+                <div className="text-gray-400 text-sm lg:text-base mb-4">
+                  <span>
+                    {mediaInfo?.release_date || "N/A"}
+                  </span>{" "}
+                  |{" "}
+                  <span className="font-semibold">{mediaInfo?.runtime
+                    ? `${mediaInfo.runtime} minutes`
+                    : "Not Available"} </span>{" "}
+                  |{" "}
+                  <span className="font-semibold">{mediaInfo?.spoken_languages?.length > 0
+                    ? mediaInfo.spoken_languages
+                      .map((lang) => lang.name)
+                      .join(", ")
+                    : "N/A"} </span>
+                </div>
 
-              <p className="text-xl text-white mb-4">
-                {mediaInfo?.tagline || ""}
-              </p>
-              <div className="text-gray-400 text-sm lg:text-base mb-4">
-                <span>
-                  {mediaInfo?.release_date || "N/A"}
-                </span>{" "}
-                |{" "}
-                <span className="font-semibold">{mediaInfo?.runtime
-                  ? `${mediaInfo.runtime} minutes`
-                  : "Not Available"} </span>{" "}
-                |{" "}
-                <span className="font-semibold">{mediaInfo?.spoken_languages?.length > 0
-                  ? mediaInfo.spoken_languages
-                    .map((lang) => lang.name)
-                    .join(", ")
-                  : "N/A"} </span>
-              </div>
+                {/* <h2 className="text-xl font-semibold mb-2">Overview</h2> */}
+                <p className="text-white mb-4 leading-relaxed">
+                  {mediaInfo?.overview || "No overview available."}
+                </p>
+                <div className="text-gray-400 text-sm lg:text-base mb-4">
+                  <span>
+                    Budget: $
+                    {mediaInfo?.budget
+                      ? mediaInfo.budget.toLocaleString()
+                      : "N/A"}
+                  </span>{" "}
+                  |{" "}
+                  <span>
+                    Revenue: $
+                    {mediaInfo?.revenue
+                      ? mediaInfo.revenue.toLocaleString()
+                      : "N/A"}
+                  </span>
+                  <div className="flex space-x-4 m-5">
+                    {mediaInfo?.genres?.map((genre, index) => (
+                      <span
+                        key={index}
+                        className="px-3 py-1 border border-white text-white text-sm rounded-full bg-white/10 backdrop-blur-md"
+                      >
+                        {genre.name}
+                      </span>
+                    ))}
+                  </div>
 
-              {/* <h2 className="text-xl font-semibold mb-2">Overview</h2> */}
-              <p className="text-white mb-4 leading-relaxed">
-                {mediaInfo?.overview || "No overview available."}
-              </p>
-              <div className="text-gray-400 text-sm lg:text-base mb-4">
-                <span>
-                  Budget: $
-                  {mediaInfo?.budget
-                    ? mediaInfo.budget.toLocaleString()
-                    : "N/A"}
-                </span>{" "}
-                |{" "}
-                <span>
-                  Revenue: $
-                  {mediaInfo?.revenue
-                    ? mediaInfo.revenue.toLocaleString()
-                    : "N/A"}
-                </span>
-              </div>
+                </div>
+                </div>
+                <div className="flex pb-12 flex-col justify-end h-full ">
 
+                  <div>
+                    {mediaInfo?.homepage && (
+                      <div className="flex items-center space-x-4">
+                        <button
+                          onClick={handleTrailerClick}
+                          className="flex items-center px-5 py-3  text-white font-bold rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
+                        >
+                          <FontAwesomeIcon icon={faPlay} className="mr-2" />
+                          <span>Watch Trailer</span>
+                        </button>
+                        <Link to="/booking">
+                          <button
+                            className="flex items-center px-6 py-3 bg-white text-black font-semibold rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
+                          >
+                            <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
+                            <span>BOOK TICKET</span>
+                          </button>
+
+                        </Link>
+                      </div>
+                    )}
+                  </div>
+                </div>
+            
             </div>
           </div>
         </>

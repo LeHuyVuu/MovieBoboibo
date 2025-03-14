@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './BookingSeat.css';
 
 export default function BookingSeat(props) {
+
     const TotalTicket = props.total_ticket;
 
     const [SeatTable, setSeatTable] = useState(Array(13).fill(0).map(() =>
@@ -10,7 +11,7 @@ export default function BookingSeat(props) {
 
     const [ChosenSeat, setChosenSeat] = useState([]);
     useEffect(() => {
-        props.onSeatCountChange(ChosenSeat.length);
+        props.onSeatChange(ChosenSeat);
     }, [ChosenSeat]);
 
     const SeatTableExample = [

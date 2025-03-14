@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import './BookingMovie.css';
 
+import BookingFood from './BookingFood';
 import BookingSeat from './BookingSeat';
-import FoodPNG from './ComboFood.png';
-import { AvailableTime, ComboFood, TypeOfTicket } from './data';
+import Total from './Total';
+import { AvailableTime, TypeOfTicket } from './data';
 
 export default function BookingMovie() {
 
@@ -11,16 +12,21 @@ export default function BookingMovie() {
     const [ChosenDate, setChosenDate] = useState(new Date().toISOString().split('T')[0]);
     const [ChosenTime, setChosenTime] = useState({ Time: AvailableTime[0].Time, Category: '' });
 
-    const [chosenSeatCount, setChosenSeatCount] = useState(0);
-    const handleSeatCountChange = (count) => {
-        setChosenSeatCount(count);
-    };
-
     const [Ticket, setTicket] = useState({
         Child: 0,
         Adult: 0,
-        AdultCouple: 0
+        Couple: 0
     });
+
+    const [ChosenSeat, setChosenSeat] = useState([]);
+    const handleSeatChange = (seat) => {
+        setChosenSeat(seat);
+    };
+
+    const [ChosenFood, setChosenFood] = useState([]);
+    const handleFoodChange = (food) => {
+        setChosenFood(food);
+    };
 
     const handleSetDayAndDate = (index) => {
         const today = new Date();
@@ -35,19 +41,19 @@ export default function BookingMovie() {
             setTicket(prev => ({ ...prev, Child: prev.Child + 1 }));
         } else if (Name === 'Adult') {
             setTicket(prev => ({ ...prev, Adult: prev.Adult + 1 }));
-        } else if (Name === 'Adult Couple') {
-            setTicket(prev => ({ ...prev, AdultCouple: prev.AdultCouple + 1 }));
+        } else if (Name === 'Couple') {
+            setTicket(prev => ({ ...prev, Couple: prev.Couple + 1 }));
         }
     }
 
     const SubtractTicket = (Name) => {
-        if (chosenSeatCount < Ticket.Child + Ticket.Adult + Ticket.AdultCouple) {
+        if (ChosenSeat.length < Ticket.Child + Ticket.Adult + Ticket.Couple) {
             if (Name === 'Child' && Ticket.Child > 0) {
                 setTicket(prev => ({ ...prev, Child: prev.Child - 1 }));
             } else if (Name === 'Adult' && Ticket.Adult > 0) {
                 setTicket(prev => ({ ...prev, Adult: prev.Adult - 1 }));
-            } else if (Name === 'Adult Couple' && Ticket.AdultCouple > 0) {
-                setTicket(prev => ({ ...prev, AdultCouple: prev.AdultCouple - 1 }));
+            } else if (Name === 'Couple' && Ticket.Couple > 0) {
+                setTicket(prev => ({ ...prev, Couple: prev.Couple - 1 }));
             }
         }
     }
@@ -162,8 +168,8 @@ export default function BookingMovie() {
                                                 ticket.Name === 'Adult' ?
                                                     <span style={{ backgroundColor: Ticket.Adult !== 0 ? '#dc3545' : '' }}>{Ticket.Adult}</span>
                                                     :
-                                                    ticket.Name === 'Adult Couple' ?
-                                                        <span style={{ backgroundColor: Ticket.AdultCouple !== 0 ? '#dc3545' : '' }}>{Ticket.AdultCouple}</span>
+                                                    ticket.Name === 'Couple' ?
+                                                        <span style={{ backgroundColor: Ticket.Couple !== 0 ? '#dc3545' : '' }}>{Ticket.Couple}</span>
                                                         :
                                                         <span>0</span>
                                             }
@@ -178,30 +184,19 @@ export default function BookingMovie() {
             </div>
 
             <BookingSeat
-                total_ticket={Ticket.Child + Ticket.Adult + Ticket.AdultCouple}
-                onSeatCountChange={handleSeatCountChange}
+                total_ticket={Ticket.Child + Ticket.Adult + Ticket.Couple}
+                onSeatChange={handleSeatChange}
             />
 
-            <div className='food-container'>
-                <h2>Choose Combo</h2>
-                {ComboFood.map((combo, index) => (
-                    <div key={index} className='food-item'>
-                        <div className='img-detail'>
-                            <img src={FoodPNG} alt='ComboFood'></img>
-                            <div className='detail'>
-                                <h3>{combo.Name}</h3>
-                                <p>{combo.Detail}</p>
-                                <p>Price: {combo.Price} VND</p>
-                            </div>
-                        </div>
-                        <div className='button'>
-                            <button className='btn'>-</button>
-                            <span>ABC</span>
-                            <button className='btn'>+</button>
-                        </div>
-                    </div>
-                ))}
-            </div>
+            <BookingFood
+                onFoodChange={handleFoodChange}
+            />
+
+            <Total
+                ticket={Ticket}
+                chosen_seat={ChosenSeat}
+                chosen_food={ChosenFood}
+            />
         </div>
     )
 }

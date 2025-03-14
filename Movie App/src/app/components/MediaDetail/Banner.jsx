@@ -69,7 +69,7 @@ const Banner = ({ mediaInfo }) => {
           ></div>
 
           {/* Content Section */}
-          <div className="p-10 relative flex flex-col lg:flex-row justify-between items-center ">
+          <div className="pr-10 pl-10 pt-10  relative flex flex-col lg:flex-row justify-between items-center ">
 
             {/*  tên phim */}
             <h1 className="  text-3xl lg:text-5xl font-bold ">
@@ -86,6 +86,7 @@ const Banner = ({ mediaInfo }) => {
               }
             />
           </div>
+          <div className="mr-10 ml-10 mt-2  border-t border-gray-600 "></div>
           <div className="relative flex flex-col lg:flex-row  lg:p-10">
 
             {/* poster */}

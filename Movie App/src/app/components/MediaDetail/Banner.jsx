@@ -69,49 +69,68 @@ const Banner = ({ mediaInfo }) => {
           ></div>
 
           {/* Content Section */}
-          <div className="relative flex flex-col lg:flex-row p-4 lg:p-10">
-            <div className="lg:w-1/3 flex justify-center">
-              <img
-                src={
-                  mediaInfo?.poster_path
-                    ? `https://image.tmdb.org/t/p/original/${mediaInfo.poster_path}`
-                    : "https://example.com/default-poster.jpg"
-                }
-                alt={mediaInfo?.title || "Movie Poster"}
-                className="w-72 rounded-lg shadow-lg"
-              />
+          <div className="pr-10 pl-10 pt-10  relative flex flex-col lg:flex-row justify-between items-center ">
+
+            {/*  tên phim */}
+            <h1 className="  text-3xl lg:text-5xl font-bold ">
+              {mediaInfo?.title || "Title Not Available"}
+            </h1>
+
+          </div>
+          <div className="relative flex flex-col lg:flex-row  lg:p-10">
+
+            {/* poster */}
+            <div className="">
+              <div className="relative inline-block w-48">
+                <img className=" w-full rounded-lg shadow-lg"
+                  src={
+                    mediaInfo?.poster_path
+                      ? `https://image.tmdb.org/t/p/original/${mediaInfo.poster_path}`
+                      : "https://example.com/default-poster.jpg"
+                  }
+                  alt={mediaInfo?.title || "Movie Poster"}
+                />
+                <div className="absolute top-1 right-1 w-10 h-10 ">
+
+
+                  <CircularProgressBar
+                    percent={Math.round(mediaInfo.vote_average * 10)}
+                    strokeColor={
+                      mediaInfo.vote_average >= 7
+                        ? "green"
+                        : mediaInfo.vote_average >= 5
+                          ? "orange"
+                          : "red"
+                    }
+                  />
+                </div>
+              </div>
+
             </div>
 
             <div className="lg:w-2/3 flex flex-col justify-center p-4">
-              <h1 className="text-3xl lg:text-5xl font-bold mb-2">
-                {mediaInfo?.title || "Title Not Available"}
-              </h1>
-              <p className="italic text-gray-400 mb-4">
+
+              <p className="text-xl text-white mb-4">
                 {mediaInfo?.tagline || ""}
               </p>
               <div className="text-gray-400 text-sm lg:text-base mb-4">
                 <span>
-                  Release Date: {mediaInfo?.release_date || "N/A"}
+                  {mediaInfo?.release_date || "N/A"}
                 </span>{" "}
                 |{" "}
-                <span>
-                  Genres:{" "}
-                  {mediaInfo?.genres?.map((genre) => genre.name).join(", ") ||
-                    "No Genres"}
-                </span>
+                <span className="font-semibold">{mediaInfo?.runtime
+                  ? `${mediaInfo.runtime} minutes`
+                  : "Not Available"} </span>{" "}
+                |{" "}
+                <span className="font-semibold">{mediaInfo?.spoken_languages?.length > 0
+                  ? mediaInfo.spoken_languages
+                    .map((lang) => lang.name)
+                    .join(", ")
+                  : "N/A"} </span>
               </div>
-              <CircularProgressBar
-                percent={Math.round(mediaInfo.vote_average * 10)}
-                strokeColor={
-                  mediaInfo.vote_average >= 7
-                    ? "green"
-                    : mediaInfo.vote_average >= 5
-                      ? "orange"
-                      : "red"
-                }
-              />
-              <h2 className="text-xl font-semibold mb-2">Overview</h2>
-              <p className="text-gray-300 mb-4 leading-relaxed">
+
+              {/* <h2 className="text-xl font-semibold mb-2">Overview</h2> */}
+              <p className="text-white mb-4 leading-relaxed">
                 {mediaInfo?.overview || "No overview available."}
               </p>
               <div className="text-gray-400 text-sm lg:text-base mb-4">
@@ -129,40 +148,7 @@ const Banner = ({ mediaInfo }) => {
                     : "N/A"}
                 </span>
               </div>
-              <div className="mb-4">
-                <span className="font-semibold">Runtime: </span>
-                {mediaInfo?.runtime
-                  ? `${mediaInfo.runtime} minutes`
-                  : "Not Available"}
-              </div>
-              <div className="mb-4">
-                <span className="font-semibold">Languages: </span>
-                {mediaInfo?.spoken_languages?.length > 0
-                  ? mediaInfo.spoken_languages
-                    .map((lang) => lang.name)
-                    .join(", ")
-                  : "N/A"}
-              </div>
-              {mediaInfo?.homepage && (
-                <div className="flex items-center space-x-4">
-                  <button
-                    onClick={handleTrailerClick}
-                    className="flex items-center px-5 py-3  text-white font-bold rounded-lg shadow-md transition-transform duration-300 ease-in-out hover:-translate-y-1 hover:shadow-lg"
-                  >
-                    <FontAwesomeIcon icon={faPlay} className="mr-2" />
-                    <span>Watch Trailer</span>
-                  </button>
-                  <Link to="/booking">
-                    <button
-                      className="flex items-center px-6 py-3 bg-white text-black font-semibold rounded-lg shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl"
-                    >
-                      <FontAwesomeIcon icon={faShoppingCart} className="mr-2" />
-                      <span>BOOK TICKET</span>
-                    </button>
 
-                  </Link>
-                </div>
-              )}
             </div>
           </div>
         </>

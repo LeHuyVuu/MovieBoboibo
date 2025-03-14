@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import './BookingMovie.css';
 
-import { AvailableTime, TypeOfTicket, ComboFood } from './data';
-import FoodPNG from './ComboFood.png';
 import BookingSeat from './BookingSeat';
+import FoodPNG from './ComboFood.png';
+import { AvailableTime, ComboFood, TypeOfTicket } from './data';
 
 export default function BookingMovie() {
 
@@ -11,12 +11,16 @@ export default function BookingMovie() {
     const [ChosenDate, setChosenDate] = useState(new Date().toISOString().split('T')[0]);
     const [ChosenTime, setChosenTime] = useState({ Time: AvailableTime[0].Time, Category: '' });
 
+    const [chosenSeatCount, setChosenSeatCount] = useState(0);
+    const handleSeatCountChange = (count) => {
+        setChosenSeatCount(count);
+    };
+
     const [Ticket, setTicket] = useState({
         Child: 0,
         Adult: 0,
         AdultCouple: 0
     });
-
 
     const handleSetDayAndDate = (index) => {
         const today = new Date();
@@ -37,12 +41,14 @@ export default function BookingMovie() {
     }
 
     const SubtractTicket = (Name) => {
-        if (Name === 'Child' && Ticket.Child > 0) {
-            setTicket(prev => ({ ...prev, Child: prev.Child - 1 }));
-        } else if (Name === 'Adult' && Ticket.Adult > 0) {
-            setTicket(prev => ({ ...prev, Adult: prev.Adult - 1 }));
-        } else if (Name === 'Adult Couple' && Ticket.AdultCouple > 0) {
-            setTicket(prev => ({ ...prev, AdultCouple: prev.AdultCouple - 1 }));
+        if (chosenSeatCount < Ticket.Child + Ticket.Adult + Ticket.AdultCouple) {
+            if (Name === 'Child' && Ticket.Child > 0) {
+                setTicket(prev => ({ ...prev, Child: prev.Child - 1 }));
+            } else if (Name === 'Adult' && Ticket.Adult > 0) {
+                setTicket(prev => ({ ...prev, Adult: prev.Adult - 1 }));
+            } else if (Name === 'Adult Couple' && Ticket.AdultCouple > 0) {
+                setTicket(prev => ({ ...prev, AdultCouple: prev.AdultCouple - 1 }));
+            }
         }
     }
 
@@ -50,7 +56,7 @@ export default function BookingMovie() {
         <div className='bookingmovie-container'>
             <h1>BOOKING MOVIE</h1>
 
-            <form controlId='movieTheater' className='form-group'>
+            <form className='form-group'>
                 <h2>Choose Theater</h2>
                 <select>
                     <option value='' className='opt'>-- Choose Theater --</option>
@@ -171,12 +177,15 @@ export default function BookingMovie() {
                 </table>
             </div>
 
-            <BookingSeat />
+            <BookingSeat
+                total_ticket={Ticket.Child + Ticket.Adult + Ticket.AdultCouple}
+                onSeatCountChange={handleSeatCountChange}
+            />
 
             <div className='food-container'>
                 <h2>Choose Combo</h2>
                 {ComboFood.map((combo, index) => (
-                    <div className='food-item'>
+                    <div key={index} className='food-item'>
                         <div className='img-detail'>
                             <img src={FoodPNG} alt='ComboFood'></img>
                             <div className='detail'>

@@ -6,6 +6,8 @@ import RootLayout from '../layouts/RootLayout'
 import PageNotFound from '../pages/PageNotFound/PageNotFound'
 import BookingMovie from '../pages/BookingMovie/BookingMovie'
 import ScrollToTop from '../hooks/ScrollToTop'
+import Contact from '../pages/Contact/Contact'
+import Discount from '../pages/Discount/Discount'
 
 const MainRoutes = () => {
     return (
@@ -17,6 +19,8 @@ const MainRoutes = () => {
                     <Route path='/movie/:id' element={<MovieDetail />} />
                     <Route path='/tv/:id' element={<TVShowDetail />} />
                     <Route path='/booking' element={<BookingMovie />} />
+                    <Route path='/contact' element={<Contact />} />
+                    <Route path='/discount' element={<Discount />} />
                     <Route path='*' element={<PageNotFound />} />
                 </Route>
             </Routes>

@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { faMagnifyingGlass, faBars, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
+import '../styles/Header.css'; // Correct relative path based on your structure
 
 export const Header = () => {
   const [isSearchVisible, setIsSearchVisible] = useState(false); // Toggle search box
@@ -51,8 +52,8 @@ export const Header = () => {
           </nav> */}
         </div>
          {/* Menu chính giữa */}
-        <div  >
-            <Link className=" mr-5 hover:text-red-400" to="/Movies"> Movies</Link>
+        <div className="text-xl font-bold ">
+            <Link className=" mr-5 hover:text-red-400" to="/"> Movies</Link>
             <Link className=" mr-5 hover:text-red-400" to="/Theaters"> Theaters</Link>
             <Link className=" mr-5 hover:text-red-400" to="/Discount"> Discount</Link>
             <Link className=" mr-5 hover:text-red-400" to="/Contact"> Contact</Link>
